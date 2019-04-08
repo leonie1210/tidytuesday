@@ -1,0 +1,40 @@
+---
+title: "Tidy Tuesday Seattle Bikes"
+author: "Leonie Düttmann"
+date: "5.4.2019"
+output: html_document
+---
+
+## Daten und Bibliotheken laden
+```{r}
+library(tidyverse)
+library(esquisse)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+bike_traffic <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-02/bike_traffic.csv")
+names(bike_traffic)
+```
+
+
+## Visualisierung erstellen
+```{r}
+bike_traffic %>% 
+  group_by(date, crossing) %>% 
+  filter(bike_count < 4000) %>% 
+  ggplot() +
+  aes(x = crossing , y = bike_count) +
+  geom_boxplot() +
+  coord_flip() +
+  labs(
+    title = "Fahrradverkehr von Kreuzungen in Seattle",
+    subtitle = "Boxplot von der Anzahl der Fahrräder pro Kreuzung und Tag",
+    x = "Kreuzungen",
+    y = "Anzahl der Fahrräder",
+    caption = "Punkte sind Ausreißer")
+ 
+```
+
+
+## Interpretation
+Die Kreuzung "Elliot Bay Trail", ist in den Aufzeichnungen die meistbefahrenste Kreuzung, währenddessen die Sealth Trail, am wenigsten Fahrräder gezählt hat. Die Burke Gilman Trail - Kreuzung ist ebenfalls gut befahren, hat aber auch die meisten Ausreißer. 
