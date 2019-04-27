@@ -1,0 +1,31 @@
+---
+title: "Anime Data"
+author: "Leonie Düttmann"
+date: "27.4.2019"
+output: html_document
+---
+
+#Daten und Biblotheken laden
+```{r}
+library(tidyverse)
+library(ggplot2)
+
+tidy_anime <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-23/tidy_anime.csv")
+```
+
+#Visualisierung
+```{r}
+ggplot(data = tidy_anime) +
+  aes(x = source, y = rank) +
+  geom_boxplot(fill = "white", colour = "blue") + coord_flip() +
+  labs(title = "Die meisten Serien auf der 'myAnimelist' stammen von Bild-Büchern",
+       x = "Ursprung der Serie",
+       y = "Rang auf der 'myAnimelist'",
+       subtitle = "Boxplot der Ränge auf der 'myAnimelist' sortiert nach dem Ursprung der Serien",
+       caption = "Punkte sind Ausreißer") +
+  theme_grey()
+```
+
+
+#Interpretation
+Die meisten Animes, die auf der Rangliste "myAnimelist" von den Nutzern hinzugefügt wurden, haben ihren Ursprung in Bild-Büchern. Am unbeliebtesten sind allerdings die Serien, die von Mangas stammten.Dafür gibt es an dieser Stelle allerdings viele Ausreißer. Viele Ursprünge der Serien sind allerdings auch unbekannt oder nicht speziell zugeordnet. 

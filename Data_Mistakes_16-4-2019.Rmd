@@ -1,0 +1,47 @@
+---
+title: "Data Mistakes"
+author: "Leonie Düttmann"
+date: "16.4.2019"
+output: html_document
+---
+
+#Daten und Biblotheken laden
+```{r}
+library(tidyverse)
+brexit <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-16/brexit.csv")
+
+corbyn <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-16/corbyn.csv")
+
+dogs <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-16/dogs.csv")
+
+eu_balance <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-16/eu_balance.csv")
+
+pensions <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-16/pensions.csv")
+
+trade <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-16/trade.csv")
+
+women_research <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-16/women_research.csv")
+
+```
+#Visualisierung
+```{r}
+library(ggplot2)
+
+ggplot(data = dogs) +
+  aes(x = avg_neck, y = avg_weight) +
+  geom_point(color = '#4daf4a') + geom_line(color = '#4daf4a') +
+  labs(title = 'Je schwerer die Hunde sind, desto größer sind sie.',
+    x = 'Durchschnittliches Gewicht',
+    y = 'Durchschnittliche Größe',
+    subtitle = 'Liniendiagramm von Hunden von Gewicht und Größe') +
+  theme_grey() 
+
+```
+
+
+
+#Interpretation
+Je größer ein Hund ist, desto schwerer ist er auch. Die Linie steigt nahezu stetig an. Es besteht somit ein Zusammenhang zwischen den beiden Variablen.
+
+
+
