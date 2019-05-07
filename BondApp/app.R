@@ -10,6 +10,9 @@
 library(shiny)
 library(tidyverse)
 
+anime <- tidy_anime %>% select(animeID, name, source, genre, type, episodes, rating, score, scored_by, rank, popularity)
+
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
    
